@@ -2,9 +2,11 @@ package anabalica.github.io.meowletters;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.util.DisplayMetrics;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TableLayout;
+import android.widget.RelativeLayout.LayoutParams;
 
 
 /**
@@ -20,10 +22,7 @@ public class GameActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
 
-        // Set the height of the gameGrid to be the same as it's width
-        TableLayout gameGrid = (TableLayout) findViewById(R.id.gameGrid);
-        int gridSize = gameGrid.getLayoutParams().width;
-        System.out.println(gridSize); // -1, because it's set to match_parent
+        this.setGameGridHeight();
     }
 
 
@@ -47,5 +46,17 @@ public class GameActivity extends Activity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    /**
+     * Set the height of the TableLayout gameGrid to be the same as its width
+     */
+    private void setGameGridHeight() {
+        DisplayMetrics displayMetrics = this.getResources().getDisplayMetrics();
+        int width = displayMetrics.widthPixels;
+        int height = width;
+
+        TableLayout gameGrid = (TableLayout) findViewById(R.id.gameGrid);
+        gameGrid.setLayoutParams(new LayoutParams(LayoutParams.WRAP_CONTENT, height));
     }
 }
