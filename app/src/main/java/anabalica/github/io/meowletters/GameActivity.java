@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TableLayout;
 
 
 /**
@@ -18,6 +19,11 @@ public class GameActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
+
+        // Set the height of the gameGrid to be the same as it's width
+        TableLayout gameGrid = (TableLayout) findViewById(R.id.gameGrid);
+        int gridSize = gameGrid.getLayoutParams().width;
+        System.out.println(gridSize); // -1, because it's set to match_parent
     }
 
 
